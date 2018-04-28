@@ -57,12 +57,6 @@ var CONFIG = {
 				"name": "HH"
 			},
 			"7": {
-				"id": 7,
-				"color": "#996699",
-				"description": "s",
-				"name": "SPANDAN"
-			},
-			"8": {
 				"id": 8,
 				"color": "#cc6699",
 				"description": "sd",
@@ -232,7 +226,7 @@ var CONFIG = {
 	}, {
 		"id": 33,
 		"orderId": 33,
-		"executionStatus": "3",
+		"executionStatus": "2",
 		"executionWorkflowStatus": "STARTED",
 		"executedOn": "15/Mar/18 10:50 PM",
 		"executedBy": "admin",
@@ -318,7 +312,7 @@ var CONFIG = {
 	}, {
 		"id": 3,
 		"orderId": 3,
-		"executionStatus": "3",
+		"executionStatus": "-1",
 		"executionWorkflowStatus": "STARTED",
 		"executedOn": "15/Mar/18 10:50 PM",
 		"executedBy": "admin",
@@ -404,7 +398,7 @@ var CONFIG = {
 	}, {
 		"id": 43,
 		"orderId": 33,
-		"executionStatus": "3",
+		"executionStatus": "1",
 		"executionWorkflowStatus": "STARTED",
 		"executedOn": "15/Mar/18 10:50 PM",
 		"executedBy": "admin",
@@ -490,7 +484,7 @@ var CONFIG = {
 	}, {
 		"id": 3,
 		"orderId": 3,
-		"executionStatus": "3",
+		"executionStatus": "2",
 		"executionWorkflowStatus": "STARTED",
 		"executedOn": "15/Mar/18 10:50 PM",
 		"executedBy": "admin",
@@ -576,7 +570,7 @@ var CONFIG = {
 	}, {
 		"id": 3,
 		"orderId": 3,
-		"executionStatus": "3",
+		"executionStatus": "-1",
 		"executionWorkflowStatus": "STARTED",
 		"executedOn": "15/Mar/18 10:50 PM",
 		"executedBy": "admin",

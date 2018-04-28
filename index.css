@@ -28,3 +28,6 @@
 .unpinned::before {
 	content: "\2193";
 }
+.hide {
+	display: none !important;
+}

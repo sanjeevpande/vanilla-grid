@@ -26,8 +26,15 @@ var vanillaGrid = vanillaGrid || {};
 		}
 	};
 
+	var columnChooser = function(columnsToHide) {
+		columnsToHide.forEach(function(columnKey) {
+			document.querySelector('.' + columnKey + '-column').classList.add('hide');
+		});
+	};
+
 	vanillaGrid.utils = {
-		pinColumns: pinColumns
+		pinColumns: pinColumns,
+		columnChooser: columnChooser
 	};
 
 })();
