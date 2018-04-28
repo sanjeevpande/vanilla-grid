@@ -1,0 +1,21 @@
+#gridWrapper {
+	display: flex;
+    justify-content: space-between;
+}
+#freezedGrid {
+	display: flex;
+    flex-direction: column;
+    flex-basis: 20%;
+}
+#freezedHeader, #freezedBody {
+	display: flex;
+    justify-content: space-between;
+}
+#unfreezedGrid {
+	display: flex;
+	flex-basis: 70%;
+}
+#actionGrid {
+	display: flex;
+	flex-basis: 10%;
+}
