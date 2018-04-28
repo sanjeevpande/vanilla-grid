@@ -37,3 +37,9 @@
 .hide {
 	display: none !important;
 }
+.grid-column > div {
+	min-height: 30px;
+	max-height: 300px;
+	min-width: 20px;
+    max-width: 200px;
+}

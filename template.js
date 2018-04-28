@@ -6,11 +6,17 @@ var vanillaGrid = vanillaGrid || {};
 		
 		var rows = config.row;
 
+		var isDraggable = config.draggableRows;
+
+		var draggableGridBody = '<div id="draggableGridBody" class="draggable-grid-body grid-body"><div class="grid-column draggable-row-column">';
+
 		var freezedGridHeader = '<div id="freezedGridHeader" class="freezed-grid-header grid-header">';
 		var freezedGridBody = '<div id="freezedGridBody" class="freezed-grid-body grid-body">';
 		
 		var unfreezedGridHeader = '<div id="unfreezedGridHeader" class="unfreezed-grid-header grid-header">';
 		var unfreezedGridBody = '<div id="unfreezedGridBody" class="unfreezed-grid-body grid-body">';
+
+		var isDragRendered = false;
 
 		config.head.forEach(function(header) {
 
@@ -27,9 +33,12 @@ var vanillaGrid = vanillaGrid || {};
 			var bodyColumn = '<div class="' + columnClass + '">';
 			rows.forEach(function(row) {
 				bodyColumn += '<div>' + createCell(row, header) + '</div>';
+				if(isDraggable && !isDragRendered) {
+					draggableGridBody += '<div>::</div>';
+				}
 			});
 			bodyColumn += '</div>';
-
+		
 			if(header.isFreeze) {
 				freezedGridHeader += headerColumn;
 				freezedGridBody += bodyColumn;
@@ -37,11 +46,18 @@ var vanillaGrid = vanillaGrid || {};
 				unfreezedGridHeader += headerColumn;
 				unfreezedGridBody += bodyColumn;
 			}
+
+			isDragRendered = true;
 		});
 
 		var freezedGrid = '<div id="freezedGrid">' + freezedGridHeader + '</div>' + freezedGridBody + '</div></div>';
 		var unfreezedGrid = '<div id="unfreezedGrid">' + unfreezedGridHeader + '</div>' + unfreezedGridBody + '</div></div>';
 
+		if(isDraggable) {
+			var draggableGridHeader = '<div id="draggableGridHeader" class="draggable-grid-header grid-header"><div class="grid-column draggable-head-column"><div>-</div></div></div>';
+			var draggableGrid = '<div id="draggableGrid">' + draggableGridHeader + draggableGridBody + '</div></div></div>';
+			return draggableGrid + freezedGrid + unfreezedGrid;
+		}
 		return freezedGrid + unfreezedGrid;
 	};
 

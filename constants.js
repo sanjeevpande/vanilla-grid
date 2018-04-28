@@ -43178,7 +43178,7 @@ var CONFIG = {
 	"rowSelection": true,
 	"freezeToggle": true,
 	"highlightSelectedRows": true,
-	"draggableRows": false,
+	"draggableRows": true,
 	"refreshGrid": true,
 	"gridComponentPage": "cycleSummaryGrid",
 	"freezeImageUrl": "/jira/download/resources/com.thed.zephyr.je/images/icons/pin_button.svg",
