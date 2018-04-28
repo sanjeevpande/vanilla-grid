@@ -1,21 +1,30 @@
-#gridWrapper {
+.grid-wrapper {
 	display: flex;
     justify-content: space-between;
 }
-#freezedGrid {
+.grid-header, .grid-body {
+	display: flex;
+    justify-content: space-between;
+}
+.grid-header .grid-column {
+	display: flex;
+}
+#freezedGrid, #unfreezedGrid, #actionGrid {
 	display: flex;
     flex-direction: column;
-    flex-basis: 20%;
 }
-#freezedHeader, #freezedBody {
-	display: flex;
-    justify-content: space-between;
+#freezedGrid {
+	flex-basis: 20%;
 }
 #unfreezedGrid {
-	display: flex;
 	flex-basis: 70%;
 }
 #actionGrid {
-	display: flex;
 	flex-basis: 10%;
+}
+.pinned::before {
+	content: "\2191";
+}
+.unpinned::before {
+	content: "\2193";
 }

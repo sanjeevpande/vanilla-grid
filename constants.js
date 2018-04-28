@@ -10,7 +10,7 @@ var CONFIG = {
 		"sortOrder": "",
 		"isVisible": true
 	}, {
-		"key": "status",
+		"key": "executionStatus",
 		"displayName": "Status",
 		"isFreeze": true,
 		"editable": true,
