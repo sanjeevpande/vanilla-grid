@@ -21,7 +21,7 @@ var vanillaGrid = vanillaGrid || {};
 			var pinnedClass = (header.isFreeze) ? 'pinned' : 'unpinned';
 
 			//grid head column
-			var headerColumn = '<div class="' + columnClass + '"><div>' + header.displayName + '</div><div class="pin-icon ' + pinnedClass + '"></div></div>';
+			var headerColumn = '<div class="' + columnClass + '"><div>' + header.displayName + '</div><div class="pin-icon ' + pinnedClass + '"></div><div data-sortkey='+ header.key +' class="sort-icon sort-desc"></div></div>';
 
 			//grid body column
 			var bodyColumn = '<div class="' + columnClass + '">';

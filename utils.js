@@ -26,6 +26,26 @@ var vanillaGrid = vanillaGrid || {};
 		}
 	};
 
+	var sortRows = function(target, className) {
+		var sortOrder;
+		var sortKey = target.dataset.sortkey;
+		var headerColumn = target.parentElement;
+		if(/sort-desc/.test(className)) {
+			//sort ascending
+			sortOrder = 'ASC';
+			var classList = headerColumn.querySelector('.sort-desc').classList;
+			classList.add('sort-asc');
+			classList.remove('sort-desc');
+		} else {
+			//sort descending
+			sortOrder = 'DESC';
+			var classList = headerColumn.querySelector('.sort-asc').classList;
+			classList.add('sort-desc');
+			classList.remove('sort-asc');
+		}
+		document.dispatchEvent(new CustomEvent('sort', { bubbles: true, detail: { sortKey: sortKey, sortOrder: sortOrder } }))
+	};
+
 	var columnChooser = function(columnsToHide) {
 		columnsToHide.forEach(function(columnKey) {
 			document.querySelector('.' + columnKey + '-column').classList.add('hide');
@@ -34,6 +54,7 @@ var vanillaGrid = vanillaGrid || {};
 
 	vanillaGrid.utils = {
 		pinColumns: pinColumns,
+		sortRows: sortRows,
 		columnChooser: columnChooser
 	};
 

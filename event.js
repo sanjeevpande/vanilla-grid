@@ -19,6 +19,9 @@ var vanillaGrid = vanillaGrid || {};
 		if(/pin-icon/.test(className)) {
 			vanillaGrid.utils.pinColumns(target, className); 
 		}
+		if(/sort-icon/.test(className)) {
+			vanillaGrid.utils.sortRows(target, className); 
+		}
 	};
 
 	vanillaGrid.events = {

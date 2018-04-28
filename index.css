@@ -28,6 +28,12 @@
 .unpinned::before {
 	content: "\2193";
 }
+.sort-asc::before {
+	content: "\25B2";
+}
+.sort-desc::before {
+	content: "\25BC";
+}
 .hide {
 	display: none !important;
 }
