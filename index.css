@@ -44,6 +44,9 @@
     max-width: 200px;
 }
 .draggable-icon::before {
-	content: '::';
-	background-color: grey;
+	content: url(drag_icon.svg);
+	cursor: move;
+}
+.draggable-icon img {
+	cursor: move;
 }

@@ -73,14 +73,16 @@ var vanillaGrid = vanillaGrid || {};
 			}
 			this.addEmptyRow(parseInt(ev.target.dataset.rowid, 10));
 		},
-		drop: function(ev) {
-			if(!this.draggedRowId) {
-				return;
-			}
+		dragEnd: function() {
 			this.dragDirection = null;
 			this.draggedRowId = null;
 			this.dragEnteredRowId = null;
 			this.removeEmptyNode();
+		},
+		drop: function(ev) {
+			if(!this.draggedRowId) {
+				return;
+			}
 			document.dispatchEvent(new CustomEvent('reorder', { bubbles: true, detail: { draggedId: this.draggedRowId, droppedId: ev.target.dataset.rowid } }))
 		},
 		removeEmptyNode: function() {

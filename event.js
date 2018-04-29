@@ -40,6 +40,10 @@ var vanillaGrid = vanillaGrid || {};
 		vanillaGrid.utils.drag.dragLeave(ev);
 	};
 
+	var onGridDragEnd = function(ev) {
+		vanillaGrid.utils.drag.dragEnd(ev);
+	};
+
 	var onGridDrop = function(ev) {
 		var className = ev.target.className;
 		vanillaGrid.utils.drag.drop(ev);
@@ -53,6 +57,7 @@ var vanillaGrid = vanillaGrid || {};
 				attachEvent(document.getElementById('gridWrapper'), 'dragstart', onGridDragStart, false);
 				attachEvent(document.getElementById('gridWrapper'), 'dragenter', onGridDragEnter, false);
 				attachEvent(document.getElementById('gridWrapper'), 'dragleave', onGridDragLeave, false);
+				attachEvent(document.getElementById('gridWrapper'), 'dragend', onGridDragEnd, false);
 				attachEvent(document.getElementById('gridWrapper'), 'drop', onGridDrop, false);
 			}
 		}
