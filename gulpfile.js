@@ -10,9 +10,9 @@ var jsFiles = 'src/js/**/*.js',
 
 gulp.task('js', function() {
     return gulp.src(jsFiles)
-        .pipe(concat('main.js'))
+        .pipe(concat('vanilla-grid.js'))
         .pipe(gulp.dest(jsDest))
-        .pipe(rename('main.min.js'))
+        .pipe(rename('vanilla-grid.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest(jsDest));
 });
@@ -22,7 +22,7 @@ var cssFiles = 'src/css/**/*.css',
     cssDest = 'dist/css';
 gulp.task('css', function() {
     return gulp.src(cssFiles)
-        .pipe(concat('main.css'))
+        .pipe(concat('vanilla-grid.css'))
         .pipe(cleanCss())
         .pipe(gulp.dest(cssDest));
 });
