@@ -44,7 +44,7 @@
     max-width: 200px;
 }
 .draggable-icon::before {
-	content: url(icons/drag_icon.svg);
+	content: url('../icons/drag_icon.svg');
 	cursor: move;
 }
 .draggable-icon img {

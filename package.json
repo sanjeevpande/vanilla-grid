@@ -1,0 +1,28 @@
+{
+  "name": "vanilla-grid",
+  "version": "0.1.0",
+  "description": "A grid written in vanilla javascript with option to freeze, unfreeze column, sort and reorder data.",
+  "scripts": {
+    "start": "serve . -p 3000",
+    "build": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanjeevpande/vanilla-grid.git"
+  },
+  "author": "Sanjeev Pande <sanjeevpande7@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanjeevpande/vanilla-grid/issues"
+  },
+  "homepage": "https://github.com/sanjeevpande/vanilla-grid#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.3",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0",
+    "serve": "^6.5.6"
+  }
+}
