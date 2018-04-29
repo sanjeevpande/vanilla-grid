@@ -8,7 +8,7 @@ var vanillaGrid = vanillaGrid || {};
 
 		var isDraggable = config.draggableRows;
 
-		var draggableGridBody = '<div id="draggableGridBody" class="draggable-grid-body grid-body"><div class="grid-column row-column draggable-row-column">';
+		var draggableGridBody = '<div id="draggableGridBody" class="draggable-grid-body grid-body"><div class="grid-column row-column">';
 
 		var freezedGridHeader = '<div id="freezedGridHeader" class="freezed-grid-header grid-header">';
 		var freezedGridBody = '<div id="freezedGridBody" class="freezed-grid-body grid-body">';
@@ -17,8 +17,13 @@ var vanillaGrid = vanillaGrid || {};
 		var unfreezedGridBody = '<div id="unfreezedGridBody" class="unfreezed-grid-body grid-body">';
 
 		var isDragRendered = false;
+		var actionCounter = 0;
 
-		config.head.forEach(function(header) {
+		var actions = config.actions;
+
+		var actionColumn = '';
+
+		config.head.forEach(function(header, headIndex) {
 
 			//column-chooser
 			var columnClass = header.isVisible ? 'grid-column ' + header.key + '-column' : 'grid-column hide ' + header.key + '-column';
@@ -29,6 +34,10 @@ var vanillaGrid = vanillaGrid || {};
 			//grid head column
 			var headerColumn = '<div class="' + columnClass + '"><div>' + header.displayName + '</div><div class="pin-icon ' + pinnedClass + '"></div><div data-sortkey='+ header.key +' class="sort-icon sort-desc"></div></div>';
 
+			if(actionCounter < actions.length) {
+				actionColumn += '<div class="row-column grid-column">';
+			}
+
 			//grid body column
 			var bodyColumn = '<div class="row-column ' + columnClass + '">';
 			rows.forEach(function(row, i) {
@@ -36,8 +45,15 @@ var vanillaGrid = vanillaGrid || {};
 				if(isDraggable && !isDragRendered) {
 					draggableGridBody += '<div data-rowid=' + i + ' class="draggable-icon"></div>';
 				}
+				if(actionCounter < actions.length) {
+					actionColumn += '<div data-customevent="'+ actions[headIndex].customEvent +'" title="'+ actions[headIndex].actionName +'" data-rowid=' + i + ' class="action-icon '+ actions[headIndex].class +'"></div>';
+				}
 			});
 			bodyColumn += '</div>';
+
+			if(actionCounter < actions.length) {
+				actionColumn += '</div>';
+			}
 		
 			if(header.isFreeze) {
 				freezedGridHeader += headerColumn;
@@ -48,17 +64,22 @@ var vanillaGrid = vanillaGrid || {};
 			}
 
 			isDragRendered = true;
+			actionCounter++;
 		});
 
 		var freezedGrid = '<div id="freezedGrid">' + freezedGridHeader + '</div>' + freezedGridBody + '</div></div>';
 		var unfreezedGrid = '<div id="unfreezedGrid">' + unfreezedGridHeader + '</div>' + unfreezedGridBody + '</div></div>';
 
+		var actionGridHeader = '<div id="actionGridHeader" class="action-grid-header grid-header"><div class="grid-column action-head-column"><div>Actions</div></div></div>';
+		var actionGridBody = '<div id="actionGridBody" class="action-grid-body grid-body">' + actionColumn + '</div>';
+		var actionGrid = '<div id="actionGrid">' + actionGridHeader + actionGridBody + '</div>';
+
 		if(isDraggable) {
 			var draggableGridHeader = '<div id="draggableGridHeader" class="draggable-grid-header grid-header"><div class="grid-column draggable-head-column"><div>-</div></div></div>';
 			var draggableGrid = '<div id="draggableGrid">' + draggableGridHeader + draggableGridBody + '</div></div></div>';
-			return draggableGrid + freezedGrid + unfreezedGrid;
+			return draggableGrid + freezedGrid + unfreezedGrid + actionGrid;
 		}
-		return freezedGrid + unfreezedGrid;
+		return freezedGrid + unfreezedGrid + actionGrid;
 	};
 
 	var createCell = function(row, header) {

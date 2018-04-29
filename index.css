@@ -50,3 +50,9 @@
 .draggable-icon img {
 	cursor: move;
 }
+.execute::before {
+	content: 'E';
+}
+.delete::before {
+	content: 'D';
+}

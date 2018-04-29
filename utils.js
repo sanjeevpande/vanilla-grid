@@ -52,6 +52,10 @@ var vanillaGrid = vanillaGrid || {};
 		});
 	};
 
+	var handleActionGridEvents = function(target) {
+		document.dispatchEvent(new CustomEvent(target.dataset.customevent, { bubbles: true, detail: { rowId: target.dataset.rowid } }))
+	};
+
 	var drag = {
 		dragDirection: null,
 		draggedRowId: null,

@@ -43140,10 +43140,12 @@ var CONFIG = {
 	}],
 	"actions": [{
 		"actionName": "Execute",
+		"class": 'execute',
 		"customEvent": "executeRow",
 		"imgSrc": "/jira/download/resources/com.thed.zephyr.je/images/icons/execute_icon.svg"
 	}, {
 		"actionName": "Delete",
+		"class": 'delete',
 		"customEvent": "deleteRow",
 		"imgSrc": "/jira/download/resources/com.thed.zephyr.je/images/icons/delete_button.svg"
 	}],

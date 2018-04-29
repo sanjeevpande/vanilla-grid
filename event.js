@@ -22,6 +22,9 @@ var vanillaGrid = vanillaGrid || {};
 		if(/sort-icon/.test(className)) {
 			vanillaGrid.utils.sortRows(target, className); 
 		}
+		if(/action-icon/.test(className)) {
+			vanillaGrid.utils.handleActionGridEvents(target, className); 
+		}
 	};
 
 	var onGridDragStart = function(ev) {
