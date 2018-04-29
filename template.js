@@ -141,11 +141,11 @@ var vanillaGrid = vanillaGrid || {};
 	};
 
 	var createDateField = function(row, header) {
-		return row[header.key];
+		return '<div class="date-wrapper"><span class="date-value"><div></div></span><span class="date-trigger"></span></div>';
 	};
 
 	var createDateTimeField = function(row, header) {
-		return row[header.key];
+		return '<div class="date-time-wrapper"><span class="date-time-value"><div></div></span><span class="date-time-trigger"></span></div>';
 	};
 
 	var createRadioField = function(row, header) {
@@ -168,17 +168,13 @@ var vanillaGrid = vanillaGrid || {};
 		return row[header.key];
 	};
 
-	var createSingleSelectField = function(row, header, optionKey, isMultiselect) {
+	var createSingleSelectField = function(row, header, optionKey) {
 		var options = '';
 		var statuses = header[optionKey];
 		for(var key in statuses) {
-			if(parseInt(row[header.key], 10) === parseInt(statuses[key].id, 10)) {
-				options += '<option selected="selected" value=' + statuses[key].id + '>' + statuses[key].name + '</option>';
-			} else {
-				options += '<option value=' + statuses[key].id + '>' + statuses[key].name + '</option>';
-			}
+			options += '<li>' + statuses[key].name + '</li>';
 		}
-		return isMultiselect ? '<select multiple="true">' + options + '</select>' : '<select>' + options + '</select>';
+		return '<div class="cell-wrapper drop-down"><div class="dropDown-wrapper "><span id="dropDown" title=""><div></div></span><span class="remove-data" style="display: none;">x</span><span class="trigger-dropDown"></span><div class="dropDown-container"><ul style="display: none;">' + options + '</ul></div></div></div>';
 	};
 
 	var actionGrid = function(config) {

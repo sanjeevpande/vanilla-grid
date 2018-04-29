@@ -44,7 +44,7 @@
     max-width: 200px;
 }
 .draggable-icon::before {
-	content: url(drag_icon.svg);
+	content: url(icons/drag_icon.svg);
 	cursor: move;
 }
 .draggable-icon img {
@@ -55,4 +55,153 @@
 }
 .delete::before {
 	content: 'D';
+}
+/*date, date-time*/
+.date-wrapper, .date-time-wrapper {
+	width: 125px;
+	display: flex;
+}
+.date-wrapper .date-value, .date-time-wrapper .date-time-value {
+	display: flex;
+    align-items: center;
+    height: 20px;
+    margin-right: 2px;
+    padding-right: 10px;
+    justify-content: center;
+    text-align: center;
+    flex-grow: 1;
+    color: #333;
+    background-color: #F7F8F9;
+    font-size: 12px;
+    overflow: hidden;
+    border-radius: 4px 0 0 4px;
+    border: 1px solid #DEE1E6;
+    box-sizing: border-box;
+}
+.date-wrapper .date-value > div, .date-wrapper .date-time-value > div {
+	text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+}
+.date-wrapper .date-value > div::after, .date-time-wrapper .date-time-value > div::after {
+	content: 'Choose Value...';
+}
+.date-wrapper .date-trigger::before, .date-time-wrapper .date-time-trigger::before {
+	min-width: 20px;
+    height: 20px;
+    vertical-align: baseline;
+    background-color: #deebff;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 0 3px 3px 0;
+    outline: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.date-wrapper .date-trigger::before {
+	content: url(icons/date-picker_icon.svg);
+}
+.date-time-wrapper .date-time-trigger::before {
+	content: url(icons/date-and-time_icon.svg);
+}
+
+/*single-select*/
+
+.drop-down.cell-wrapper {
+    width: 125px;
+}
+.drop-down .dropDown-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-width: 1px;
+}
+.drop-down .dropDown-wrapper span:nth-child(1) {
+    display: flex;
+    align-items: center;
+    height: 20px;
+    margin-right: 2px;
+    padding-right: 10px;
+    justify-content: center;
+    text-align: center;
+    flex-grow: 1;
+    color: #333;
+    background-color: #F7F8F9;
+    font-size: 12px;
+    overflow: hidden;
+    border-radius: 4px 0 0 4px;
+    border: 1px solid #DEE1E6;
+    box-sizing: border-box;
+}
+.drop-down .dropDown-wrapper>span:nth-child(1)>div {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+}
+.drop-down .dropDown-wrapper>span:nth-child(1)>div:empty:after {
+    content: 'Choose Value...';
+}
+.drop-down .remove-data {
+    position: absolute;
+    right: 26px;
+    font-weight: 500;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.drop-down .dropDown-wrapper .trigger-dropDown {
+    min-width: 20px;
+    height: 20px;
+    vertical-align: baseline;
+    background-color: #deebff;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 0 3px 3px 0;
+    outline: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.drop-down .dropDown-wrapper .trigger-dropDown::before {
+	content: url(icons/single-select_icon.svg);
+}
+.drop-down .dropDown-container.close {
+    display: none;
+}
+.drop-down.isGrid .dropDown-container {
+    position: fixed;
+}
+.drop-down .dropDown-container {
+    position: absolute;
+    z-index: 300;
+    top: 21px;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #dfe1e6;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .2);
+    width: calc(100% - 25px);
+	display: none;
+}
+.drop-down .dropDown-container ul {
+    list-style: none;
+    margin: 2px 0;
+    padding-left: 0;
+    max-height: 100px;
+    overflow: auto;
+}
+.drop-down .dropDown-container ul li {
+    width: 100%;
+    padding: 3px 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+    box-sizing: border-box;
 }

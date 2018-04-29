@@ -78,7 +78,7 @@ var CONFIG = {
 		"editable": false,
 		"isInlineEdit": false,
 		"isSortable": false,
-		"type": "String",
+		"type": "DATE",
 		"isVisible": true
 	}, {
 		"key": "defects",
@@ -96,7 +96,7 @@ var CONFIG = {
 		"editable": false,
 		"isInlineEdit": false,
 		"isSortable": false,
-		"type": "String",
+		"type": "DATE_TIME",
 		"isVisible": true
 	}, {
 		"key": "label",
