@@ -8,7 +8,7 @@ var vanillaGrid = vanillaGrid || {};
 
 		var isDraggable = config.draggableRows;
 
-		var draggableGridBody = '<div id="draggableGridBody" class="draggable-grid-body grid-body"><div class="grid-column draggable-row-column">';
+		var draggableGridBody = '<div id="draggableGridBody" class="draggable-grid-body grid-body"><div class="grid-column row-column draggable-row-column">';
 
 		var freezedGridHeader = '<div id="freezedGridHeader" class="freezed-grid-header grid-header">';
 		var freezedGridBody = '<div id="freezedGridBody" class="freezed-grid-body grid-body">';
@@ -30,11 +30,11 @@ var vanillaGrid = vanillaGrid || {};
 			var headerColumn = '<div class="' + columnClass + '"><div>' + header.displayName + '</div><div class="pin-icon ' + pinnedClass + '"></div><div data-sortkey='+ header.key +' class="sort-icon sort-desc"></div></div>';
 
 			//grid body column
-			var bodyColumn = '<div class="' + columnClass + '">';
-			rows.forEach(function(row) {
-				bodyColumn += '<div>' + createCell(row, header) + '</div>';
+			var bodyColumn = '<div class="row-column ' + columnClass + '">';
+			rows.forEach(function(row, i) {
+				bodyColumn += '<div data-rowid=' + i + '>' + createCell(row, header) + '</div>';
 				if(isDraggable && !isDragRendered) {
-					draggableGridBody += '<div>::</div>';
+					draggableGridBody += '<div data-rowid=' + i + ' class="draggable-icon"></div>';
 				}
 			});
 			bodyColumn += '</div>';

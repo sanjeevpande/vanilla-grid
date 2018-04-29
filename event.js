@@ -24,9 +24,37 @@ var vanillaGrid = vanillaGrid || {};
 		}
 	};
 
+	var onGridDragStart = function(ev) {
+		var className = ev.target.className;
+		if(/draggable-icon/.test(className)) {
+			vanillaGrid.utils.drag.dragStart(ev);
+		}
+	};
+
+	var onGridDragEnter = function(ev) {
+		var className = ev.target.className;
+		vanillaGrid.utils.drag.dragEnter(ev);
+	};
+
+	var onGridDragLeave = function(ev) {
+		vanillaGrid.utils.drag.dragLeave(ev);
+	};
+
+	var onGridDrop = function(ev) {
+		var className = ev.target.className;
+		vanillaGrid.utils.drag.drop(ev);
+	};
+
 	vanillaGrid.events = {
-		initialize: function() {
+		initialize: function(config) {
 			attachEvent(document.getElementById('gridWrapper'), 'click', onGridClick, false);
+			if(config.draggableRows) {
+				attachEvent(document.getElementById('gridWrapper'), 'click', onGridClick, false);
+				attachEvent(document.getElementById('gridWrapper'), 'dragstart', onGridDragStart, false);
+				attachEvent(document.getElementById('gridWrapper'), 'dragenter', onGridDragEnter, false);
+				attachEvent(document.getElementById('gridWrapper'), 'dragleave', onGridDragLeave, false);
+				attachEvent(document.getElementById('gridWrapper'), 'drop', onGridDrop, false);
+			}
 		}
 	};
 

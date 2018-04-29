@@ -52,10 +52,59 @@ var vanillaGrid = vanillaGrid || {};
 		});
 	};
 
+	var drag = {
+		dragDirection: null,
+		draggedRowId: null,
+		dragEnteredRowId: null,
+		dragStart: function(ev) {
+			this.draggedRowId = ev.target.dataset.rowid;
+		},
+		dragEnter: function(ev) {
+			if(!this.draggedRowId) {
+				return;
+			}
+			var enteredRowId = parseInt(ev.target.dataset.rowid, 10);
+			this.dragDirection =  enteredRowId < this.dragEnteredRowId ? 'up' : 'down';
+			this.dragEnteredRowId = enteredRowId;
+		},
+		dragLeave: function(ev) {
+			if(!this.draggedRowId) {
+				return;
+			}
+			this.addEmptyRow(parseInt(ev.target.dataset.rowid, 10));
+		},
+		drop: function(ev) {
+			if(!this.draggedRowId) {
+				return;
+			}
+			this.dragDirection = null;
+			this.draggedRowId = null;
+			this.dragEnteredRowId = null;
+			this.removeEmptyNode();
+			document.dispatchEvent(new CustomEvent('reorder', { bubbles: true, detail: { draggedId: this.draggedRowId, droppedId: ev.target.dataset.rowid } }))
+		},
+		removeEmptyNode: function() {
+			document.querySelectorAll('.empty-node').forEach(function(emptyNode) {
+				emptyNode.parentElement.removeChild(emptyNode);
+			});
+		},
+		addEmptyRow: function(leftRowIndex) {
+			this.removeEmptyNode();
+			var allColumns = document.querySelectorAll('.row-column');
+			allColumns.forEach(function(rowColumn) {
+				var emptyNode = document.createElement('div');
+				emptyNode.className = 'empty-node';
+				var index = (this.dragDirection === 'up') ? leftRowIndex - 1: leftRowIndex;
+				rowColumn.insertBefore(emptyNode, rowColumn.children[index]);
+			});
+		}
+	};
+
 	vanillaGrid.utils = {
 		pinColumns: pinColumns,
 		sortRows: sortRows,
-		columnChooser: columnChooser
+		columnChooser: columnChooser,
+		drag: drag
 	};
 
 })();
