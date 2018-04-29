@@ -101,13 +101,13 @@ var vanillaGrid = vanillaGrid || {};
 				cell = createSingleSelectField(row, header, 'options');
 				break;
 			case 'MULTI_SELECT':
-				cell = createSingleSelectField(row, header, 'options', true);
+				cell = createMultiSelectField(row, header, 'options');
 				break;
 			case 'DATE':
 				cell = createDateField(row, header);
 				break;
 			case 'DATE_TIME':
-				cell = createDateTimeField(row, header);
+				cell = createDateField(row, header);
 				break;
 			case 'RADIO_BUTTON':
 				cell = createRadioField(row, header);
@@ -133,39 +133,45 @@ var vanillaGrid = vanillaGrid || {};
 	};
 
 	var createTextField = function(row, header) {
-		return '<input type="text" value=' + row[header.key] + '>';
+		return '<div class="cell-wrapper custom-text"><div class="editable-cell-container"><div class="cell-readMode readMode"><div id="editableField" class="editable-field"><div><span class="renderHTML readValues" title=""><p>' + row[header.key] + '</p></span></div></div></div><div id="editMode"><div class="cell-editMode" style="display: none;"><input placeholder="Enter Value..." maxlength="255" title=""></div></div></div></div>';
 	};
 
 	var createLargeTextField = function(row, header) {
-		return '<textarea value=' + row[header.key] + '></textarea>';
+		return '<div class="cell-wrapper custom-text"><div class="editable-cell-container"><div class="cell-readMode readMode"><div id="editableField" class="editable-field empty"><div><span class="renderHTML readValues" title=""><p>' + row[header.key] + '</p></span></div></div></div><div id="editMode"><div class="cell-editMode" style="display: none;"><textarea maxlength="750" placeholder="Enter Value..."> </textarea></div></div></div></div>';
 	};
 
 	var createDateField = function(row, header) {
-		return '<div class="date-wrapper"><span class="date-value"><div></div></span><span class="date-trigger"></span></div>';
+		return '<div class="cell-wrapper drop-Down drop-downdate"><div class="dropDown-wrapper"><span id="dropDown" title=""><div></div></span><span class="remove-data">x</span><span class="trigger-dropDown"><img src="'+ header.imgUrl +'"></span></div></div>';
 	};
 
-	var createDateTimeField = function(row, header) {
-		return '<div class="date-time-wrapper"><span class="date-time-value"><div></div></span><span class="date-time-trigger"></span></div>';
+	var createRadioField = function(row, header, optionKey) {
+		var options = '';
+		var statuses = header[optionKey];
+		for(var key in statuses) {
+			options += '<li><input type="radio" name="radio" id="radio-10-1-0" value="' + statuses[key].id + '"><label class="content" tabindex="-1" for="radio-10-1-0" title="">' + statuses[key].name + '</label></li>';
+		}
+		return '<div class="cell-wrapper drop-Down drop-downradio"><div class="dropDown-wrapper"><span class="dropDown" title=""><div> '+ row[header.key] + '</div></span><span class="remove-data">x</span><span class="trigger-dropDown" tabindex="-1"><img src="' + header.imgUrl + '"></span><div tabindex="-1" class="content dropDown-container close"><ul style="display: none;">' + options + '</ul></div></div></div>';
 	};
 
-	var createRadioField = function(row, header) {
-		return row[header.key];
-	};
-
-	var createCheckboxField = function(row, header) {
-		return row[header.key];
+	var createCheckboxField = function(row, header, optionKey) {
+		var options = '';
+		var statuses = header[optionKey];
+		for(var key in statuses) {
+			options += '<li><input type="checkbox" id="check-1-1-0" value="'+ statuses[key].id +'"><label class="content" tabindex="-1" for="check-1-1-0" title="">'+ statuses[key].name +'</label></li>';
+		}
+		return '<div class="cell-wrapper drop-Down drop-downcheckbox"><div class="dropDown-wrapper"><span class="dropDown" title=""><div>'+ row[header.key] +'</div></span><span class="remove-data">x</span><span class="trigger-dropDown" tabindex="-1"><img src="'+ header.imgUrl +'"></span><div tabindex="-1" class="content dropDown-container close"><ul style="display: none;">'+ options +'</ul></div></div></div>';
 	};
 
 	var createNumberField = function(row, header) {
-		return '<input type="number" value=' + row[header.key] + '>';
+		return '<div class="cell-wrapper custom-text"><div class="editable-cell-container"><div class="cell-readMode readMode"><div id="editableField" class="editable-field"><div><span class="renderHTML readValues" title="">'+ row[header.key] +'</span></div></div></div><div id="editMode"><div class="cell-editMode" style="display: none;"><input placeholder="Enter Value..." maxlength="255" title="" type="number"></div></div></div></div>';
 	};
 
 	var createWikiField = function(row, header) {
-		return row[header.key];
+		return '<div class="cell-wrapper custom-textarea"><div class="editable-cell-container"><div class="cell-readMode readMode"><div  class="editable-field empty"><div><span class="renderHTML readValues"></span></div></div></div><div id="editMode" tabindex="-1" style="display: block;"><div class="cell-editMode" style="display: none;"><textarea placeholder="Enter Value..." tabindex="100"></textarea></div><div class="wikiIcons-wrapper" style="display: none;"><span class="wiki-icons wiki-renderer-icon stopBlur" tabindex="-1" title="preview"><img src="'+ header.wikiPreview +'"></span><a target="_blank" tabindex="-1" class="stopBlur" href="/secure/WikiRendererHelpAction.jspa?section=texteffects"><span class="wiki-icons wiki-help" title="Get local help about wiki markup help"><img src="'+ header.wikiHelp +'"></span></a><a><div></div></a></div></div></div></div>';
 	};
 
 	var createAttachmentsField = function(row, header) {
-		return row[header.key];
+		return '<div class="cell-wrapper grid-cell editValue"><div><span class="renderHTML htmlValues"></span></div></div><div class="attachment-wrapper"><div class="attachment-count attachmentTrigger" tabindex="-1"><span class="noAttachments">0 attached</span></div><div class="add-attachments show" title="Add Attachment"><a><img src="'+ header.imgUrl +'"></a></div></div>';
 	};
 
 	var createSingleSelectField = function(row, header, optionKey) {
@@ -174,7 +180,16 @@ var vanillaGrid = vanillaGrid || {};
 		for(var key in statuses) {
 			options += '<li>' + statuses[key].name + '</li>';
 		}
-		return '<div class="cell-wrapper drop-down"><div class="dropDown-wrapper "><span id="dropDown" title=""><div></div></span><span class="remove-data" style="display: none;">x</span><span class="trigger-dropDown"></span><div class="dropDown-container"><ul style="display: none;">' + options + '</ul></div></div></div>';
+		return '<div class="cell-wrapper drop-down"><div class="dropDown-wrapper "><span id="dropDown" title=""><div></div></span><span class="remove-data" style="display: none;">x</span><span class="trigger-dropDown"><img src="'+ header.imgUrl +'"></span><div class="dropDown-container"><ul style="display: none;">' + options + '</ul></div></div></div>';
+	};
+
+	var createMultiSelectField = function(row, header, optionKey) {
+		var options = '';
+		var statuses = header[optionKey];
+		for(var key in statuses) {
+			options += '<option value='+ statuses[key].id +'>' + statuses[key].name + '</option>';
+		}
+		return '<div class="cell-wrapper drop-Down drop-downmultiselect"><div class="dropDown-wrapper"><span id="dropDown"><div></div></span><span class="trigger-dropDown"><img src="'+ header.imgUrl +'"></span><div class="dropDown-container close"><ul><select class="dropDownSelectElem" multiple="">'+ options +'</select></ul></div></div></div>';
 	};
 
 	var actionGrid = function(config) {

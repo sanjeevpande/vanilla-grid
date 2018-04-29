@@ -15,8 +15,8 @@ var CONFIG = {
 		"isFreeze": true,
 		"editable": true,
 		"isInlineEdit": true,
-		"type": "SELECT_STATUS",
-		"imgUrl": "/jira/download/resources/com.thed.zephyr.je/images/icons/single-select_icon.svg",
+		"type": "MULTI_SELECT",
+		"imgUrl": "icons/single-select_icon.svg",
 		"isSortable": true,
 		"sortOrder": "",
 		"executionSummaries": {
@@ -79,6 +79,7 @@ var CONFIG = {
 		"isInlineEdit": false,
 		"isSortable": false,
 		"type": "DATE",
+		"imgUrl": "icons/date-picker_icon.svg",
 		"isVisible": true
 	}, {
 		"key": "defects",
@@ -97,6 +98,7 @@ var CONFIG = {
 		"isInlineEdit": false,
 		"isSortable": false,
 		"type": "DATE_TIME",
+		"imgUrl": "icons/date-and-time_icon.svg",
 		"isVisible": true
 	}, {
 		"key": "label",
