@@ -27,4 +27,12 @@ gulp.task('css', function() {
         .pipe(gulp.dest(cssDest));
 });
 
-gulp.task('default', ['js', 'css']);
+//icon paths
+var iconFiles = 'src/icons/**/*.*',
+    iconDest = 'dist/icons';
+gulp.task('icons', function() {
+    return gulp.src(iconFiles)
+        .pipe(gulp.dest(iconDest));
+});
+
+gulp.task('default', ['js', 'css', 'icons']);
