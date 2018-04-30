@@ -178,9 +178,9 @@ var vanillaGrid = vanillaGrid || {};
 		var options = '';
 		var statuses = header[optionKey];
 		for(var key in statuses) {
-			options += '<li>' + statuses[key].name + '</li>';
+			options += '<li class="dropdown-option">' + statuses[key].name + '</li>';
 		}
-		return '<div class="cell-wrapper drop-down"><div class="dropDown-wrapper "><span id="dropDown" title=""><div></div></span><span class="remove-data" style="display: none;">x</span><span class="trigger-dropDown"><img src="'+ header.imgUrl +'"></span><div class="dropDown-container"><ul style="display: none;">' + options + '</ul></div></div></div>';
+		return '<div class="cell-wrapper drop-down"><div class="dropDown-wrapper "><span id="dropDown" title=""><div></div></span><span class="remove-data" style="display: none;">x</span><span class="trigger-dropDown"><img src="'+ header.imgUrl +'"></span><div class="dropDown-container close"><ul>' + options + '</ul></div></div></div>';
 	};
 
 	var createMultiSelectField = function(row, header, optionKey) {
@@ -197,7 +197,10 @@ var vanillaGrid = vanillaGrid || {};
 	};
 
 	var initialize = function(elem, config) {
-		elem.innerHTML = '<div id="gridWrapper" class="grid-wrapper">' + renderGrid(config) + '</div>';
+		if(!elem) {
+			return;
+		}
+		elem.innerHTML = '<div id="vanillaGridWrapper" class="vanilla-grid-wrapper">' + renderGrid(config) + '</div>';
 	};
 
 	vanillaGrid.templates = {

@@ -25,6 +25,15 @@ var vanillaGrid = vanillaGrid || {};
 		if(/action-icon/.test(className)) {
 			vanillaGrid.utils.handleActionGridEvents(target, className); 
 		}
+		if(/trigger-dropDown/.test(className) || (target.tagName === 'IMG' && /trigger-dropDown/.test(target.parentElement.className))) {
+			if(target.tagName === 'IMG') {
+				target = target.parentElement;
+			}
+			vanillaGrid.utils.dropdown.triggerDropdown(target); 
+		}
+		if(/dropdown-option/.test(className)) {
+			vanillaGrid.utils.dropdown.optionClick(target, className); 
+		}
 	};
 
 	var onGridDragStart = function(ev) {
@@ -54,14 +63,14 @@ var vanillaGrid = vanillaGrid || {};
 
 	vanillaGrid.events = {
 		initialize: function(config) {
-			attachEvent(document.getElementById('gridWrapper'), 'click', onGridClick, false);
+			attachEvent(document.getElementById('vanillaGridWrapper'), 'click', onGridClick, false);
 			if(config.draggableRows) {
-				attachEvent(document.getElementById('gridWrapper'), 'click', onGridClick, false);
-				attachEvent(document.getElementById('gridWrapper'), 'dragstart', onGridDragStart, false);
-				attachEvent(document.getElementById('gridWrapper'), 'dragenter', onGridDragEnter, false);
-				attachEvent(document.getElementById('gridWrapper'), 'dragleave', onGridDragLeave, false);
-				attachEvent(document.getElementById('gridWrapper'), 'dragend', onGridDragEnd, false);
-				attachEvent(document.getElementById('gridWrapper'), 'drop', onGridDrop, false);
+				attachEvent(document.getElementById('vanillaGridWrapper'), 'click', onGridClick, false);
+				attachEvent(document.getElementById('vanillaGridWrapper'), 'dragstart', onGridDragStart, false);
+				attachEvent(document.getElementById('vanillaGridWrapper'), 'dragenter', onGridDragEnter, false);
+				attachEvent(document.getElementById('vanillaGridWrapper'), 'dragleave', onGridDragLeave, false);
+				attachEvent(document.getElementById('vanillaGridWrapper'), 'dragend', onGridDragEnd, false);
+				attachEvent(document.getElementById('vanillaGridWrapper'), 'drop', onGridDrop, false);
 			}
 		}
 	};

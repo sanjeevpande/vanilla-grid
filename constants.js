@@ -15,7 +15,7 @@ var CONFIG = {
 		"isFreeze": true,
 		"editable": true,
 		"isInlineEdit": true,
-		"type": "MULTI_SELECT",
+		"type": "SELECT_STATUS",
 		"imgUrl": "src/icons/single-select_icon.svg",
 		"isSortable": true,
 		"sortOrder": "",

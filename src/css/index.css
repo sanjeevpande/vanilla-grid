@@ -1,60 +1,60 @@
-.grid-wrapper {
-	display: flex;
+.vanilla-grid-wrapper {
+    display: flex;
     justify-content: space-between;
 }
 .grid-header, .grid-body {
-	display: flex;
+    display: flex;
     justify-content: space-between;
 }
 .grid-header .grid-column {
-	display: flex;
+    display: flex;
 }
 #freezedGrid, #unfreezedGrid, #actionGrid {
-	display: flex;
+    display: flex;
     flex-direction: column;
 }
 #freezedGrid {
-	flex-basis: 20%;
+    flex-basis: 20%;
 }
 #unfreezedGrid {
-	flex-basis: 70%;
+    flex-basis: 70%;
 }
 #actionGrid {
-	flex-basis: 10%;
+    flex-basis: 10%;
 }
 .pinned::before {
-	content: "\2191";
+    content: "\2191";
 }
 .unpinned::before {
-	content: "\2193";
+    content: "\2193";
 }
 .sort-asc::before {
-	content: "\25B2";
+    content: "\25B2";
 }
 .sort-desc::before {
-	content: "\25BC";
+    content: "\25BC";
 }
 .hide {
-	display: none !important;
+    display: none !important;
 }
 .grid-column > div {
-	min-height: 30px;
-	max-height: 300px;
-	min-width: 20px;
+    min-height: 30px;
+    max-height: 300px;
+    min-width: 20px;
     max-width: 200px;
 }
 .draggable-icon::before {
-	content: url('../icons/drag_icon.svg');
-	cursor: move;
+    content: url('../icons/drag_icon.svg');
+    cursor: move;
 }
 .draggable-icon img {
-	cursor: move;
+    cursor: move;
 }
 .execute::before {
-	content: 'E';
+    content: 'E';
 }
 .delete::before {
-	content: 'D';
+    content: 'D';
 }
 /*date, date-time*/
 .drop-downdate.cell-wrapper.drop-Down {
@@ -164,7 +164,7 @@
     top: 50%;
     transform: translateY(-50%);
 }
-.drop-down .dropDown-wrapper .trigger-dropDown {
+.drop-down .dropDown-wrapper span.trigger-dropDown {
     min-width: 20px;
     height: 20px;
     vertical-align: baseline;
@@ -185,6 +185,7 @@
     position: fixed;
 }
 .drop-down .dropDown-container {
+    display: block;
     position: absolute;
     z-index: 300;
     top: 21px;
@@ -195,7 +196,6 @@
     border-bottom-right-radius: 3px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, .2);
     width: calc(100% - 25px);
-	display: none;
 }
 .drop-down .dropDown-container ul {
     list-style: none;

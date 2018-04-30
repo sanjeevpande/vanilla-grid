@@ -106,11 +106,27 @@ var vanillaGrid = vanillaGrid || {};
 		}
 	};
 
+	var dropdown = {
+		triggerDropdown: function(target) {
+			var nextSibling = target.nextSibling;
+			var className = nextSibling.className;
+			if(className.indexOf('close') > -1) {
+				nextSibling.classList.remove('close');
+			} else {
+				nextSibling.classList.add('close');
+			}
+		},
+		optionClick: function(target) {
+			this.dispatchEvent(new CustomEvent('cycleSummaryGridUpdate', { detail: { type: 'SINGLE_SELECT', value: target.dataset.value, contentValue: target.dataset.textContent }, bubbles: true, composed: true }));
+		}
+	};
+
 	vanillaGrid.utils = {
 		pinColumns: pinColumns,
 		sortRows: sortRows,
 		columnChooser: columnChooser,
-		drag: drag
+		drag: drag,
+		dropdown: dropdown
 	};
 
 })();
